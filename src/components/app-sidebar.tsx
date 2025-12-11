@@ -111,7 +111,7 @@ export function AppSidebar() {
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
                     <Link
-                      href="/admin/users"
+                      href="/users"
                       className={`flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
                         pathname.startsWith("/admin/users")
                           ? "bg-blue-50 text-blue-600"
