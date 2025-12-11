@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
 import { useAuthViewModel } from "@/presentation/hooks/useAuthViewModel";
 
 const DashboardPage = () => {
-   const { user, loading } = useAuthViewModel();
+  const { user, loading } = useAuthViewModel();
   const router = useRouter();
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"overview" | "projects" | "tasks">(
@@ -36,7 +36,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/admin/login");
+      router.push("/login");
     }
   }, [user, loading, router]);
 
@@ -168,8 +168,6 @@ const DashboardPage = () => {
       color: "hover:bg-amber-50 hover:text-amber-600",
     },
   ];
-
- 
 
   return (
     <div className="min-h-screen">

@@ -111,7 +111,7 @@ export default function RegisterPage() {
     );
 
     if (success) {
-      router.push("/admin");
+      router.push("/");
     }
   };
 
@@ -516,7 +516,7 @@ export default function RegisterPage() {
                   <p className="text-center text-gray-400">
                     Sudah punya akun?{" "}
                     <Link
-                      href="/admin/login"
+                      href="/login"
                       className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
                     >
                       Masuk di sini
