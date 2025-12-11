@@ -1,4 +1,4 @@
-import Maintenance from "@/components/Maintenance";
+import Maintenance from "@/presentation/components/Maintenance";
 import React from "react";
 
 const page = () => {

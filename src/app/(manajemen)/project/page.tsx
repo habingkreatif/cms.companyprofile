@@ -3,9 +3,14 @@
 import { useState } from "react";
 import { useProjects } from "@/presentation/hooks/useProject";
 import { Project } from "@/domain/entities/project";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/presentation/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/presentation/components/ui/card";
+import { Badge } from "@/presentation/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -13,9 +18,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+} from "@/presentation/components/ui/table";
+import { Input } from "@/presentation/components/ui/input";
+import { Alert, AlertDescription } from "@/presentation/components/ui/alert";
 import {
   Dialog,
   DialogContent,
@@ -23,7 +28,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/presentation/components/ui/dialog";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -33,7 +38,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from "@/presentation/components/ui/alert-dialog";
 import {
   Plus,
   Pencil,

@@ -9,7 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from "@/presentation/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";

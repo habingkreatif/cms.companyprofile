@@ -1,6 +1,10 @@
 "use client";
-import { AppSidebar } from "@/components/app-sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AppSidebar } from "@/presentation/components/app-sidebar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/presentation/components/ui/avatar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,8 +12,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
+} from "@/presentation/components/ui/breadcrumb";
+import { Button } from "@/presentation/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,8 +21,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+} from "@/presentation/components/ui/dropdown-menu";
+import {
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/presentation/components/ui/sidebar";
 import { useAuthViewModel } from "@/presentation/hooks/useAuthViewModel";
 import { Bell, LogOut, Search, Settings, User } from "lucide-react";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 "use client";
 
 import { Construction } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/presentation/components/ui/button";
 
 export default function Page() {
   return (
