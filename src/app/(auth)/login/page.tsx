@@ -23,7 +23,7 @@ export default function LoginPage() {
     const result = await login(email, password);
     if (result.success) {
       setTimeout(() => {
-        router.push("/admin");
+        router.push("/");
       }, 300);
     }
   };
@@ -211,7 +211,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
-                  onClick={() => router.push("/admin/register")}
+                  onClick={() => router.push("/register")}
                 >
                   Register Here
                 </button>
