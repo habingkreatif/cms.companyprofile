@@ -25,11 +25,13 @@ import {
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthViewModel } from "@/presentation/hooks/useAuthViewModel";
+import { useProjects } from "@/presentation/hooks/useProject";
 
 const DashboardPage = () => {
   const { user, loading } = useAuthViewModel();
+  const { projects: dbProjects, loading: projectsLoading } = useProjects();
   const router = useRouter();
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"overview" | "projects" | "tasks">(
     "overview"
   );
@@ -43,7 +45,7 @@ const DashboardPage = () => {
   const stats = [
     {
       title: "Total Projects",
-      value: "24",
+      value: dbProjects.length.toString(),
       change: "+12%",
       icon: <Briefcase className="w-4 h-4" />,
       color: "text-blue-500",
@@ -79,41 +81,22 @@ const DashboardPage = () => {
     },
   ];
 
-  const recentProjects = [
-    {
-      id: 1,
-      name: "Office Building A",
-      progress: 85,
-      status: "On Track",
-      deadline: "Dec 15, 2024",
-      budget: "Rp 1.2B",
-      team: "15 members",
-      color: "bg-emerald-500",
-      priority: "high",
-    },
-    {
-      id: 2,
-      name: "Highway Bridge B",
-      progress: 65,
-      status: "Delayed",
-      deadline: "Jan 20, 2025",
-      budget: "Rp 2.8B",
-      team: "32 members",
-      color: "bg-amber-500",
-      priority: "medium",
-    },
-    {
-      id: 3,
-      name: "Apartment Complex C",
-      progress: 92,
-      status: "Completed",
-      deadline: "Dec 5, 2024",
-      budget: "Rp 850M",
-      team: "24 members",
-      color: "bg-blue-500",
-      priority: "low",
-    },
-  ];
+  // Map database projects to dashboard format
+  const recentProjects = dbProjects.map((project) => ({
+    id: project.id,
+    name: project.title,
+    progress: project.totalProgress || 0,
+    status: project.status,
+    deadline: project.end,
+    budget: "Rp -", // Placeholder as not in DB
+    team: "X members", // Placeholder as not in DB
+    color: project.status === "Selesai" 
+      ? "bg-blue-500" 
+      : project.status === "Sedang Berjalan" 
+      ? "bg-emerald-500" 
+      : "bg-amber-500",
+    priority: "medium", // Placeholder
+  }));
 
   const upcomingTasks = [
     {
@@ -256,7 +239,7 @@ const DashboardPage = () => {
                       Active Projects
                     </h3>
                     <p className="text-sm text-gray-600 mt-1">
-                      3 projects need attention
+                      {recentProjects.length} projects need attention
                     </p>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -274,12 +257,17 @@ const DashboardPage = () => {
 
               <div className="p-6">
                 <div className="space-y-4">
-                  {recentProjects.map((project) => (
+                  {projectsLoading ? (
+                     <div className="text-center py-4">Loading projects...</div>
+                  ) : recentProjects.length === 0 ? (
+                     <div className="text-center py-4 text-gray-500">No projects found</div>
+                  ) : (
+                    recentProjects.map((project) => (
                     <motion.div
                       key={project.id}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className={`flex items-center justify-between p-4 rounded-lg border transition-all ${
+                      className={`flex items-center justify-between p-4 rounded-lg border transition-all cursor-pointer ${
                         selectedProject === project.id
                           ? "border-blue-300 bg-blue-50"
                           : "border-gray-100 hover:border-gray-300 hover:bg-gray-50"
@@ -333,7 +321,7 @@ const DashboardPage = () => {
                         </div>
                       </div>
                     </motion.div>
-                  ))}
+                  )))}
                 </div>
 
                 <button className="w-full mt-6 text-center text-blue-600 hover:text-blue-800 text-sm font-medium py-3 border-t border-gray-100">
