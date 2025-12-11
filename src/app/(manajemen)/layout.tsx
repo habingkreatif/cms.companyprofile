@@ -31,8 +31,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { user, logout} = useAuthViewModel();
-  
+  const { user, logout } = useAuthViewModel();
+
   const router = useRouter();
 
   const segments = pathname.split("/").filter((s) => s !== "");
@@ -47,7 +47,7 @@ export default function AdminLayout({
 
   const handleLogout = async () => {
     await logout();
-    router.push("/admin/login");
+    router.push("/login");
   };
 
   return (
@@ -60,7 +60,7 @@ export default function AdminLayout({
             <div className="flex items-center gap-4">
               <SidebarTrigger />
 
-              {pathname === "/admin" || pathname === "/admin/" ? (
+              {pathname === "/" || pathname === "/" ? (
                 <h1 className="text-lg font-semibold">
                   {getGreeting()}, {user?.username || "Admin"}!
                 </h1>
@@ -108,7 +108,9 @@ export default function AdminLayout({
                   <button className="flex items-center space-x-2 px-2 py-1 rounded-full hover:bg-gray-100 transition">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src="/user.png" alt="User" />
-                      <AvatarFallback>{user?.username?.charAt(0).toUpperCase() || "A"}</AvatarFallback>
+                      <AvatarFallback>
+                        {user?.username?.charAt(0).toUpperCase() || "A"}
+                      </AvatarFallback>
                     </Avatar>
 
                     <span className="hidden md:flex flex-col items-start pr-2">
@@ -127,13 +129,13 @@ export default function AdminLayout({
                   <DropdownMenuSeparator />
 
                   <DropdownMenuItem asChild>
-                    <Link href="/admin/profile" className="flex items-center">
+                    <Link href="/profile" className="flex items-center">
                       <User className="mr-2 h-4 w-4" /> Profile
                     </Link>
                   </DropdownMenuItem>
 
                   <DropdownMenuItem asChild>
-                    <Link href="/admin/settings" className="flex items-center">
+                    <Link href="/settings" className="flex items-center">
                       <Settings className="mr-2 h-4 w-4" /> Settings
                     </Link>
                   </DropdownMenuItem>
